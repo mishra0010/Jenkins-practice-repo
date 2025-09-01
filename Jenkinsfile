@@ -1,11 +1,39 @@
-node {
-    stage('Build') {
-        echo 'Building...'
+// node {
+//     stage('Build') {
+//         echo 'Building...'
+//     }
+//     stage('Test') {
+//         echo 'Testing...'
+//     }
+//     stage('Deploy') {
+//         echo 'Deploying...'
+//     }
+// }
+
+
+pipeline{
+    agent any
+
+    stages{
+        stage('Build'){
+            steps{
+                sh 'bash build.sh'
+            }
+        }
+        stage('Test'){
+            steps{
+                sh 'bash test.sh'
+            }
+        }
+        stage('Deploy'){
+            steps{
+                sh 'bash deploy.sh'
+            }
+        }
     }
-    stage('Test') {
-        echo 'Testing...'
-    }
-    stage('Deploy') {
-        echo 'Deploying...'
+    post{
+        always{
+            echo "Pipeline finished"
+        }
     }
 }
