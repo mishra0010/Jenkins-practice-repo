@@ -1,5 +1,4 @@
 #!/bin/bash
-sleep 2
-echo "Deploying Application"
+echo "Deploying Application" > deploy.log
 sleep 2 
-echo "Application deployed"
+echo "Application deployed" >> deploy.log

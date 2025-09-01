@@ -1,4 +1,4 @@
 #!/bin/bash
-echo "Running tests..."
+echo "Running tests..." > test.log
 sleep 2
-echo "All test Passed.."
+echo "All test Passed.." >> test.log

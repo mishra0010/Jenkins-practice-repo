@@ -11,29 +11,40 @@
 // }
 
 
-pipeline{
+// 
+
+
+pipeline {
     agent any
 
-    stages{
-        stage('Build'){
-            steps{
+    stages {
+        stage('Build') {
+            steps {
                 sh 'bash build.sh'
             }
         }
-        stage('Test'){
-            steps{
+        stage('Test') {
+            steps {
                 sh 'bash test.sh'
             }
         }
-        stage('Deploy'){
-            steps{
+        stage('Deploy') {
+            steps {
                 sh 'bash deploy.sh'
             }
         }
     }
-    post{
-        always{
-            echo "Pipeline finished"
+
+    post {
+        success {
+            echo "🎉 Pipeline completed successfully!"
+        }
+        failure {
+            echo "❌ Pipeline failed!"
+        }
+        always {
+            archiveArtifacts artifacts: '*.log', fingerprint: true
+            echo "📦 Logs have been archived."
         }
     }
 }
